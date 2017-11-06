@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file alias="logo">res/icon.svg</file>
+        <file alias="style">res/style.css</file>
+        <file>res/add.svg</file>
+        <file>res/adduser.svg</file>
+        <file>res/copy.svg</file>
+        <file>res/edit.svg</file>
+        <file>res/save.svg</file>
+        <file>res/showhide.svg</file>
+        <file>res/trashbin.svg</file>
+        <file>res/undo.svg</file>
+        <file>res/user.svg</file>
+        <file>res/users.svg</file>
+        <file>res/addcircle.svg</file>
+        <file>res/removecircle.svg</file>
+        <file>res/clone.svg</file>
+    </qresource>
+</RCC>

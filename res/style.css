@@ -1,0 +1,22 @@
+/* docker-blue: #1488c6 */
+
+QPushButton {
+	padding: 3 12;
+}
+
+QStatusBar {
+	border-top: 1 solid #bbb;
+}
+
+QLabel#LabelFeedback {
+	color: red;
+}
+
+QPushButton#FlatTransparentBtn {
+	border: 0;
+}
+
+QScrollArea {
+	border: 2 groove #ccc;
+	border-radius: 4;
+}

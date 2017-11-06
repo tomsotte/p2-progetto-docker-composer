@@ -1,0 +1,27 @@
+[
+    {
+        "name": "admin",
+        "password": "admin",
+        "role": "adminUser"
+    },
+    {
+        "name": "com",
+        "password": "com",
+        "role": "completeUser"
+    },
+    {
+        "name": "vol",
+        "password": "vol",
+        "role": "volumeUser"
+    },
+    {
+        "name": "admin2",
+        "password": "admin2",
+        "role": "adminUser"
+    },
+    {
+        "name": "net",
+        "password": "net",
+        "role": "networkUser"
+    }
+]

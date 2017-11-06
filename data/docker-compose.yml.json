@@ -1,0 +1,148 @@
+{
+    "_modelName": "compose",
+    "author": "admin",
+    "name": "compose",
+    "parts": [
+        {
+            "_modelName": "service",
+            "author": "admin",
+            "buildContext": ".",
+            "buildDockerfile": "",
+            "containerName": "apache",
+            "environment": [
+                "USER=apache",
+                "PASSWORD=pass"
+            ],
+            "image": "myapache",
+            "links": [
+                "mysql"
+            ],
+            "name": "apache",
+            "networks": [
+                "internal"
+            ],
+            "ports": [
+                "8080",
+                "80",
+                "443"
+            ],
+            "volumes": [
+                "dataext"
+            ]
+        },
+        {
+            "_modelName": "network",
+            "author": "admin",
+            "driver": "bridge",
+            "external": false,
+            "externalName": "",
+            "internal": true,
+            "ip6": false,
+            "ipamDriver": "",
+            "ipamSubnet": "",
+            "name": "internal"
+        },
+        {
+            "_modelName": "service",
+            "author": "net",
+            "buildContext": "",
+            "buildDockerfile": "",
+            "containerName": "",
+            "environment": [
+                "PASSWORD="
+            ],
+            "image": "mysql:5.7",
+            "links": [],
+            "name": "mysql",
+            "networks": [
+                "internal"
+            ],
+            "ports": [
+                "23:2345"
+            ],
+            "volumes": [
+                "datadb",
+                "/opt/sql:/sql"
+            ]
+        },
+        {
+            "_modelName": "network",
+            "author": "net",
+            "driver": "",
+            "external": true,
+            "externalName": "",
+            "internal": false,
+            "ip6": false,
+            "ipamDriver": "",
+            "ipamSubnet": "",
+            "name": "external"
+        },
+        {
+            "_modelName": "volume",
+            "author": "vol",
+            "driver": "",
+            "external": false,
+            "externalName": "",
+            "name": "datadb"
+        },
+        {
+            "_modelName": "volume",
+            "author": "vol",
+            "driver": "",
+            "external": true,
+            "externalName": "somename",
+            "name": "dataext"
+        },
+        {
+            "_modelName": "service",
+            "author": "com",
+            "buildContext": ".",
+            "buildDockerfile": "",
+            "containerName": "myftpsaur",
+            "environment": [],
+            "image": "ftpsaur:1.0",
+            "links": [],
+            "name": "ftp",
+            "networks": [
+                "external"
+            ],
+            "ports": [
+                "21"
+            ],
+            "volumes": []
+        },
+        {
+            "_modelName": "service",
+            "author": "admin",
+            "buildContext": "",
+            "buildDockerfile": "",
+            "containerName": "",
+            "environment": [],
+            "image": "",
+            "links": [],
+            "name": "mysite",
+            "networks": [],
+            "ports": [],
+            "volumes": []
+        },
+        {
+            "_modelName": "dockerfile",
+            "author": "admin",
+            "name": "nginx",
+            "text": "# Nginx\n#\n# VERSION               0.0.1\n\nFROM      ubuntu\nLABEL Description=\"This image is used to start the foobar executable\" Vendor=\"ACME Products\" Version=\"1.0\"\nRUN apt-get update && apt-get install -y inotify-tools nginx apache2 openssh-server"
+        },
+        {
+            "_modelName": "dockerfile",
+            "author": "admin",
+            "name": "vncfirefox",
+            "text": "# Firefox over VNC\n#\n# VERSION               0.3\n\nFROM ubuntu\n\n# Install vnc, xvfb in order to create a 'fake' display and firefox\nRUN apt-get update && apt-get install -y x11vnc xvfb firefox\nRUN mkdir ~/.vnc\n# Setup a password\nRUN x11vnc -storepasswd 1234 ~/.vnc/passwd\n# Autostart firefox (might not be the best way, but it does the trick)\nRUN bash -c 'echo \"firefox\" >> /.bashrc'\n\nEXPOSE 5900\nCMD    [\"x11vnc\", \"-forever\", \"-usepw\", \"-create\"]"
+        },
+        {
+            "_modelName": "dockerfile",
+            "author": "admin",
+            "name": "multipleimages",
+            "text": "# Multiple images example\n#\n# VERSION               0.1\n\nFROM ubuntu\nRUN echo foo > bar\n# Will output something like ===> 907ad6c2736f\n\nFROM ubuntu\nRUN echo moo > oink\n# Will output something like ===> 695d7793cbe4\n\n# You'll now have two images, 907ad6c2736f with /bar, and 695d7793cbe4 with\n# /oink."
+        }
+    ],
+    "version": "3.0"
+}
